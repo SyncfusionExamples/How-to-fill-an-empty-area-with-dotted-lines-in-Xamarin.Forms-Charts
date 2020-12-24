@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms" 
+             xmlns:local="clr-namespace:SfChart_xamarin"
+             x:Class="SfChart_xamarin.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:ViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <chart:SfChart x:Name="Chart" 
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand">
+            <chart:SfChart.PrimaryAxis>
+                <chart:DateTimeAxis />
+            </chart:SfChart.PrimaryAxis>
+
+            <chart:SfChart.SecondaryAxis>
+                <chart:NumericalAxis/>
+            </chart:SfChart.SecondaryAxis>
+
+            <chart:SfChart.Series>
+                <chart:StackingAreaSeries ItemsSource="{Binding Data}" XBindingPath="Date" YBindingPath="Value" />
+                <chart:StackingAreaSeries ItemsSource="{Binding Data1}" XBindingPath="Date" YBindingPath="Value" />
+                <chart:FastLineSeries ItemsSource="{Binding LineData}" XBindingPath="Date" YBindingPath="Value" Color="Gray">
+                    <chart:FastLineSeries.StrokeDashArray>
+                        <x:Array Type="{x:Type x:Double}">
+                            <x:Double>5</x:Double>
+                            <x:Double>6</x:Double>
+                        </x:Array>
+                    </chart:FastLineSeries.StrokeDashArray>
+                </chart:FastLineSeries>
+            </chart:SfChart.Series>
+        </chart:SfChart>
+    </StackLayout>
+</ContentPage>
